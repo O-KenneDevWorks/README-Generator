@@ -1,11 +1,11 @@
-// TODO: Include packages needed for this application
 // External imports
 import inquirer from "inquirer";
 import fs from "fs";
+
 // Internal Imports
 import generateMarkdown from './utils/generateMarkdown.js';
 
-// TODO: Create an array of questions for user input
+// List of questions to gather pertinent data from the user
 const questions = [{message: "Please Enter Title: ",
                     name: "title",
                     type: "input"},
@@ -36,7 +36,7 @@ const questions = [{message: "Please Enter Title: ",
                     type: "input"}
 ];
 
-// TODO: Create a function to write README file
+// Create the file and write the formatted markdown 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
         if (err) {
@@ -47,7 +47,7 @@ function writeToFile(fileName, data) {
     });
 }
 
-// TODO: Create a function to initialize app
+// The meat and potatoes.  
 function init() {
     console.log("Thank you for using the README Generator!\nLets get started!");
     
@@ -65,10 +65,10 @@ function init() {
             email: answer.email,
         }
         
-        // TODO: Generate Markdown
+        // Now that we have the information gathered, generate a markdown
         const newMarkdown = generateMarkdown(readmeData);
 
-        // TODO: Write to .md file.  for now we will print to console
+        // write the markdown to the file
         const fileName = `${readmeData.title}.md`;
         writeToFile(fileName, newMarkdown);
         
@@ -80,59 +80,3 @@ function init() {
 
 // Function call to initialize app
 init();
-
-
-// List of Data we need to collect
-/*
-Title - What is the title of your project?
-Description - Please enter a description for your project?
-Table of Contents - Auto-generate based on contents that user inputs
-Installation - Please provide your installation guide
-Usage - Provide instructions and examples for use
-Credits - List your collaborators, if any
-License - Please enter License
-##Optionals##
-Badges
-Features
-How to Contribute
-Tests
-*/
-
-/*
-GIVEN a command-line application that accepts user input
-
-WHEN I am prompted for information about my application repository
-THEN a high-quality, professional README.md is generated with the title of my project and sections entitled 
-    Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
-
-WHEN I enter my project title
-THEN this is displayed as the title of the README
-
-WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
-THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-
-WHEN I choose a license for my application from a list of options
-THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled 
-    License that explains which license the application is covered under
-
-WHEN I enter my GitHub username
-THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-
-WHEN I enter my email address
-THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-
-WHEN I click on the links in the Table of Contents
-THEN I am taken to the corresponding section of the README
-
-*/
-
-/*
-title: 'my readme test',
-description: 'this is a description',
-installInstructions: 'install ',
-usage: 'use me',
-contribution: 'contribute',
-test: 'testy mcTesterson',
-githubUsername: 'dankMemes',
-email: 'mail@mail.com'
-*/
