@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 import inquirer from "inquirer";
-import generateMarkdown from "./utils/generateMarkdown";
+import generateMarkdown from './utils/generateMarkdown.js';
 
 // TODO: Create an array of questions for user input
 const questions = [{message: "Please Enter Title: ",
@@ -21,10 +21,10 @@ const questions = [{message: "Please Enter Title: ",
                    {message: "Please Enter Test Instructions: ",
                     name: "test",
                     type: "input"},
-                   {message: "Please Enter License: ",
-                    name: "license",
-                    type: "list",
-                    choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "N/A"]},
+                //    {message: "Please Enter License: ",
+                //     name: "license",
+                //     type: "list",
+                //     choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "N/A"]},
                    {message: "Please Enter GitHub Username: ",
                     name: "githubUsername",
                     type: "input"},
@@ -54,14 +54,25 @@ function init() {
             githubUsername: answer.githubUsername,
             email: answer.email,
         }
-    })
+        
+        // TODO: Process licensing
+
+        // TODO: Generate Markdown
+        const newMarkdown = generateMarkdown(readmeData);
+
+        // TODO: Write to .md file.  for now we will print to console
+        console.log(newMarkdown);    
+
+    }).catch(error => {
+        console.error(error);
+      });
 
     // TODO: Process licensing
 
     // TODO: Generate Markdown
-    newMarkdown = generateMarkdown.generateMarkdown(readmeData);
 
     // TODO: Write to .md file
+    // console.log(newMarkdown);
 }
 
 
