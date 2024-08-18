@@ -1,15 +1,36 @@
 // TODO: Include packages needed for this application
 import inquirer from "inquirer";
+import generateMarkdown from "./utils/generateMarkdown";
 
 // TODO: Create an array of questions for user input
-const questions = ["Please Enter Title",
-                   "Please Enter Description",
-                   "Please Enter Installation Instructions",
-                   "Please Enter Usage Information",
-                   "Please Enter Contribution Guidelines",
-                   "Please Enter Test Instructions",
-                   "Please Enter GitHub Username",
-                   "Please Enter Email Address"
+const questions = [{message: "Please Enter Title: ",
+                    name: "title",
+                    type: "input"},
+                   {message: "Please Enter Description: ",
+                    name: "description",
+                    type: "input"},
+                   {message: "Please Enter Installation Instructions: ",
+                    name: "installInstructions",
+                    type: "input"},
+                   {message: "Please Enter Usage Information: ",
+                    name: "usage",
+                    type: "input"},
+                   {message: "Please Enter Contribution Guidelines: ",
+                    name: "contribution",
+                    type: "input"},
+                   {message: "Please Enter Test Instructions: ",
+                    name: "test",
+                    type: "input"},
+                   {message: "Please Enter License: ",
+                    name: "license",
+                    type: "list",
+                    choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "N/A"]},
+                   {message: "Please Enter GitHub Username: ",
+                    name: "githubUsername",
+                    type: "input"},
+                   {message: "Please Enter Email Address: ",
+                    name: "email",
+                    type: "input"}
 ];
 
 // TODO: Create a function to write README file
@@ -19,17 +40,30 @@ function writeToFile(fileName, data) {}
 function init() {
     console.log("Thank you for using the README Generator!\nLets get started!");
     
-    // Lets loop through questions to gather information
-    for (let question = 0; question < questions; question++) {
-        inquirer.prompt([{
-            type: "input",
-            message: questions[question],
-            name: "response"
-        }]).then(answer => {
-            console.log(answer);
-        })
-    }
+    // Gather the data for the README
+    inquirer.prompt(questions).then(answer => {
+        console.log(answer);
+        const readmeData = {
+            title: answer.title,
+            description: answer.description,
+            installInstructions: answer.installInstructions,
+            usage: answer.usage,
+            contribution: answer.contribution,
+            license: answer.license,
+            test: answer.test,
+            githubUsername: answer.githubUsername,
+            email: answer.email,
+        }
+    })
+
+    // TODO: Process licensing
+
+    // TODO: Generate Markdown
+    newMarkdown = generateMarkdown.generateMarkdown(readmeData);
+
+    // TODO: Write to .md file
 }
+
 
 // Function call to initialize app
 init();
@@ -77,4 +111,15 @@ THEN this is added to the section of the README entitled Questions, with instruc
 WHEN I click on the links in the Table of Contents
 THEN I am taken to the corresponding section of the README
 
+*/
+
+/*
+title: 'my readme test',
+description: 'this is a description',
+installInstructions: 'install ',
+usage: 'use me',
+contribution: 'contribute',
+test: 'testy mcTesterson',
+githubUsername: 'dankMemes',
+email: 'mail@mail.com'
 */
