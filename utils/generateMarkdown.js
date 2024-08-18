@@ -1,22 +1,61 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+function renderLicenseBadge(license) {
+  if (!license) {
+    return "";
+  }
+
+  let modifiedLicense = license.replace(/ /g, "_");
+  console.log(modifiedLicense);
+
+  return `![License: ${license}](https://img.shields.io/badge/License-${modifiedLicense}-fuchsia.svg)`
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+  if (!license) {
+    return "";
+  }
+
+  switch (license) {
+    case "GNU AGPLv3":
+      return `https://choosealicense.com/licenses/agpl-3.0/`;
+    case "GNU GPLv3": 
+      return `https://choosealicense.com/licenses/gpl-3.0/)`;
+    case "GNU LGPLv3": 
+      return `https://choosealicense.com/licenses/lgpl-3.0/`;
+    case "Mozilla Public License 2.0": 
+      return `https://choosealicense.com/licenses/mpl-2.0/`;
+    case "Apache License 2.0": 
+      return `https://choosealicense.com/licenses/apache-2.0/`;
+    case "MIT License": 
+      return `https://choosealicense.com/licenses/mit/`;
+    case "Boost Software License 1.0":
+      return `https://choosealicense.com/licenses/bsl-1.0/`;
+    case "The Unlicense": 
+      return `https://choosealicense.com/licenses/unlicense/`;
+    case "N/A":
+      return `This project is not licensed for public use.`;
+  }
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function renderLicenseSection(license) {
+  if (!license) {
+    return "";
+  }
+
+  return `This project is licensed under the ${license} - see [${renderLicenseLink(license)}](${renderLicenseLink(license)}) for details.`;
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
-
 # ${data.title}
 
-licenseBadge
+${renderLicenseBadge(data.license)}
 
 ## Description
 ${data.description}
@@ -38,6 +77,7 @@ ${data.installInstructions}
 ${data.usage}
 
 ## License
+${renderLicenseSection(data.license)}
 
 ## Contributing
 ${data.contribution}
@@ -46,9 +86,7 @@ ${data.contribution}
 ${data.test}
 
 ## Questions
-[GitHub](https://github.com/${data.githubUsername})
-If you have questions, you may reach out to me at ${data.email}
-
+If you have questions, you may reach out to me at ${data.email} and please check out this and other projects on my [GitHub](https://github.com/${data.githubUsername})
 `;
 }
 

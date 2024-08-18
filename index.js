@@ -1,5 +1,8 @@
 // TODO: Include packages needed for this application
+// External imports
 import inquirer from "inquirer";
+import fs from "fs";
+// Internal Imports
 import generateMarkdown from './utils/generateMarkdown.js';
 
 // TODO: Create an array of questions for user input
@@ -21,10 +24,10 @@ const questions = [{message: "Please Enter Title: ",
                    {message: "Please Enter Test Instructions: ",
                     name: "test",
                     type: "input"},
-                //    {message: "Please Enter License: ",
-                //     name: "license",
-                //     type: "list",
-                //     choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "N/A"]},
+                   {message: "Please Enter License: ",
+                    name: "license",
+                    type: "list",
+                    choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "N/A"]},
                    {message: "Please Enter GitHub Username: ",
                     name: "githubUsername",
                     type: "input"},
@@ -34,7 +37,15 @@ const questions = [{message: "Please Enter Title: ",
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        if (err) {
+            console.error('An error occurred while writing the file:', err);
+        } else {
+            console.log(`File ${fileName} has been created successfully!`);
+        }
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {
@@ -42,7 +53,6 @@ function init() {
     
     // Gather the data for the README
     inquirer.prompt(questions).then(answer => {
-        console.log(answer);
         const readmeData = {
             title: answer.title,
             description: answer.description,
@@ -55,24 +65,16 @@ function init() {
             email: answer.email,
         }
         
-        // TODO: Process licensing
-
         // TODO: Generate Markdown
         const newMarkdown = generateMarkdown(readmeData);
 
         // TODO: Write to .md file.  for now we will print to console
-        console.log(newMarkdown);    
-
+        const fileName = `${readmeData.title}.md`;
+        writeToFile(fileName, newMarkdown);
+        
     }).catch(error => {
         console.error(error);
-      });
-
-    // TODO: Process licensing
-
-    // TODO: Generate Markdown
-
-    // TODO: Write to .md file
-    // console.log(newMarkdown);
+    });
 }
 
 
