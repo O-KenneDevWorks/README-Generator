@@ -72,6 +72,8 @@ Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this 
 ```
 After providing the required details, your README will be created with sections like Introduction, Installation, Usage, License, and more, fully populated with your inputs.
 
+[Video Example](https://drive.google.com/file/d/1SrZhX7rmu1Q4lgwiwxNLcoHgSZxOzyjU/view?usp=sharing)
+
 ## Contributing
 Contributions are welcome and encouraged! If you have suggestions for new features, improvements, or bug fixes, please follow these steps:
 
@@ -103,4 +105,4 @@ For any inquiries or issues, please contact:
 
 - Name: Owen Kenne
 - Email: <okenne.devworks@gmail.com>
-- GitHub: O-KenneDevWorks
+- GitHub: [O-KenneDevWorks](https://github.com/O-KenneDevWorks/)
